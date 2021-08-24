@@ -1,0 +1,17 @@
+<section>
+    <div class="container">
+        <div class="row">
+            {{#each product}}
+            <div class="card" style="width:500px">
+  <img class="card-img-top"  src="{{this.product.image}}" style="height: 150px;width:75px" >
+  <div class="card-body">
+    <h4 class="card-title">{{this.product.name}}</h4>
+    <h3 class="card-text">Orderd quantity:{{this.quantity}}</h3>
+    <h3 class="card-text">price/item:{{this.product.price}}</h3>
+  </div>
+</div>
+{{/each}}
+<a href="/" class="btn btn-success">goto home</a>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,47 @@
+<section>
+    <div class="container mt-5">
+        <form action="" id="checkout-form">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Enter delivery details</h2><br>
+                    <div>
+                        <label for="">Address</label>
+                        <input class="form-control" type="text" id="address" name="address">
+                        <label for="">pincode</label>
+                        <input class="form-control" type="text" id="pincode" name="pincode">
+                        <label for="">Mobile</label>
+                        <input class="form-control" type="text" id="mobile" name="mobile">
+                        <input type="text" name="userid" value="{{sha}}" hidden>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="container mt-5 ml-5 checkout">
+                    <h5>Total Amound= Rs. {{total}}</h5>
+                    <hr>
+                    <div class="payment">
+                        <p>payment method</p>
+                        <label class="radio-inline">
+                            <input type="radio" name="payment-method" value="COD" checked>COD
+                        </label>
+                        <br><br>
+                        <button type="submit" class="btn btn-primary">checkout</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<script>
+    $("#checkout-form").submit((e)=>{
+        e.preventDefault()
+        $.ajax({
+            url:'/place-order',
+            method:'post',
+            data:$('#checkout-form').serialize(),
+            success:(respose)=>{
+                location.href="/order-placed-successfully"
+            }
+        })
+    })
+</script>

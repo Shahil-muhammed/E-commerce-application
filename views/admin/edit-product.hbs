@@ -1,0 +1,28 @@
+<section>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                {{#if edit}}
+                <h2 class="text-center">Edit product</h2>
+                <form action="/admin/edit-product/{{edit._id}}" enctype="multipart/form-data" method="POST">
+                    <label for="">name</label>
+                    <input type="text" name="name" class="form-control" value="{{edit.name}}">
+                    <label for="">discription</label>
+                    <input type="text" name="discription" class="form-control" value="{{edit.discription}}">
+                    <label for="">image</label>
+                    <input type="text" name="image" class="form-control" value="{{edit.image}}">
+                    <label for="">category</label>
+                    <input type="text" name="category" class="form-control" value="{{edit.category}}">
+                    <label for="">price</label>
+                    <input type="text" name="price" class="form-control" value="{{edit.price}}">
+                    <button type="submit" class="btn btn-success mt-4">submit</button>
+                    <br><br>
+                    <a href="/admin" class="btn btn-success">goto admin</a>
+                </form>
+            </div>
+            {{else}}
+            <h1>problem detected</h1>
+            {{/if}}
+        </div>
+    </div>
+</section>

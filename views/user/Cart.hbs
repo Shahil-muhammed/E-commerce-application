@@ -1,0 +1,57 @@
+{{#if item}}
+<section>
+    <div class="container">
+        <table class="table mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">item</th>
+                    <th scope="col">title</th>
+                    <th scope="col">quantity</th>
+                    <th scope="col">price per piece</th>
+                </tr>
+                <tr>
+                    <a href="/delete-cart-item/'{{id}}'" class="btn btn-danger">delete-cart-item</a>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each item}}
+                <tr>
+                    <td><img style="width: 70px;height:70px" src="{{this.product.image}}" ></td>
+                    <td>{{this.product.name}}</td>
+                    <td>
+                        <button class="cart-item-count mr-3" onclick="changeQ('{{this._id}}','{{this.product._id}}',-1)">-</button>
+                        {{this.quantity}} <button class="cart-item-count ml-3" onclick="changeQ('{{this._id}}','{{this.product._id}}',1)">+</button>
+                    </td>
+                    <td>
+                        <h4>Rs. {{this.product.price}}</h4>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+
+        </table>
+        <hr>
+        <h3 class="float-right">Total: Rs. {{total}}</h3>
+        <a href="/checkout" class="btn btn-success">place order</a>
+    </div>
+</section>
+<script>
+    function changeQ(cartid,proid,count){
+        $.ajax({
+            url:'/change-product-quantity',
+            data:{
+                cart:cartid,
+                product:proid,
+                count:count
+            },
+            method:'post',
+            success:(response)=>{
+                alert("quantity updated successfully")
+                location.reload()
+            }
+        })
+    }
+</script>
+{{else}}
+<h1 style="color: white;text-align:center;background-color:black">empty cart please add atleast one product</h1>
+{{/if}}
